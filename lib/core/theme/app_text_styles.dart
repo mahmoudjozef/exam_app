@@ -130,6 +130,13 @@ class AppTextStyles {
     color: AppColors.errorColor,
   );
 
+  static const TextStyle bodyLarge = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.lightGray,
+    height: 1.5,
+  );
+
   // Underline Styles
   static const TextStyle regular12BlackUnderline = TextStyle(
     fontFamily: 'Inter',
