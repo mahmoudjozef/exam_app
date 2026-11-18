@@ -1,18 +1,19 @@
 import "package:dio/dio.dart";
+import "package:exam_app/core/constants/app_constants.dart";
 
 sealed class BaseResponce<T> {}
 
-class SuccessBaseResponce<T> extends BaseResponce {
+class SuccessBaseResponce<T> extends BaseResponce <T> {
   T data;
   SuccessBaseResponce({required this.data});
 }
 
-class ErrorBaseResponce<T> extends BaseResponce {
+class ErrorBaseResponce<T> extends BaseResponce<T> {
   String errorMsg;
   ErrorBaseResponce.fromErrorMag(this.errorMsg);
   // main constructr
   ErrorBaseResponce({Object? errorObj})
-    : errorMsg = errorObj == null ? '' : _getErrorMsg(errorObj);
+    : errorMsg = errorObj == null ? AppConstants.errorMsg : _getErrorMsg(errorObj);
   //logic msg
   static String _getErrorMsg(Object error) {
     if (error is DioException) {
@@ -24,10 +25,10 @@ class ErrorBaseResponce<T> extends BaseResponce {
           int statusCode = error.response?.statusCode ?? 404;
           return _getStatusCodeErrorMsg(statusCode);
         default:
-          return '';
+          return AppConstants.errorMsg;
       }
     }
-    return '';
+    return AppConstants.errorMsg;
   }
 
   static String _getStatusCodeErrorMsg(int code) {
@@ -41,7 +42,7 @@ class ErrorBaseResponce<T> extends BaseResponce {
       case 500:
         return 'Server Error';
       default:
-        return '';
+        return AppConstants.errorMsg;
     }
   }
 }

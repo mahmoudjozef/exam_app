@@ -1,9 +1,11 @@
 import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/theme/app_theme.dart';
+import 'package:exam_app/features/auth/presentation/screens/signup_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   configureDependencies();
+
   runApp(const MyApp());
 }
 
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      home: SignupView(),
     );
   }
 }
