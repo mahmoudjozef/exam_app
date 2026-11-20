@@ -1,40 +1,41 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'app_colors.dart';
 
 class AppTextStyles {
   AppTextStyles._();
 
   // Headings
-  static const TextStyle medium20Black = TextStyle(
+  static TextStyle get medium20Black => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w500,
     height: 1.0,
     color: AppColors.blackColor,
   );
 
-  static const TextStyle medium20Primary = TextStyle(
+  static TextStyle get medium20Primary => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w500,
     height: 1.0,
     letterSpacing: 1.0,
     color: AppColors.primaryColor,
   );
 
-  static const TextStyle semiBold20Black = TextStyle(
+  static TextStyle get semiBold20Black => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w600,
     height: 1.0,
     letterSpacing: 0,
     color: AppColors.blackColor,
   );
 
-  static const TextStyle medium18Black = TextStyle(
+  static TextStyle get medium18Black => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w500,
     height: 1.0,
     letterSpacing: 0,
@@ -42,42 +43,42 @@ class AppTextStyles {
   );
 
   // Body Styles
-  static const TextStyle bodySmallGray = TextStyle(
+  static TextStyle get bodySmallGray => const TextStyle(
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     color: AppColors.textGray,
   );
 
-  static const TextStyle regular13Black = TextStyle(
+  static TextStyle get regular13Black => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w400,
     height: 1.0,
     letterSpacing: 0,
     color: AppColors.blackColor,
   );
 
-  static const TextStyle regular13Primary = TextStyle(
+  static TextStyle get regular13Primary => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w400,
     height: 1.0,
     letterSpacing: 0,
     color: AppColors.primaryColor,
   );
 
-  static const TextStyle medium13Black = TextStyle(
+  static TextStyle get medium13Black => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w500,
     height: 1.0,
     letterSpacing: 0,
     color: AppColors.blackColor,
   );
 
-  static const TextStyle regular16Black = TextStyle(
+  static TextStyle get regular16Black => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     height: 1.0,
@@ -85,62 +86,62 @@ class AppTextStyles {
     color: AppColors.blackColor,
   );
 
-  static const TextStyle regular16Grey = TextStyle(
+  static TextStyle get regular16Grey => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     height: 1.0,
     letterSpacing: 0,
     color: AppColors.grayColor,
   );
 
-  static const TextStyle medium16Primary = TextStyle(
+  static TextStyle get medium16Primary => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     height: 1.0,
     letterSpacing: 0,
     color: AppColors.primaryColor,
   );
 
-  static const TextStyle medium14Gray = TextStyle(
+  static TextStyle get medium14Gray => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
     height: 1.0,
     letterSpacing: 0,
     color: AppColors.grayColor,
   );
 
-  static const TextStyle medium14RobotoGray = TextStyle(
+  static TextStyle get medium14RobotoGray => TextStyle(
     fontFamily: 'Roboto',
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
     height: 20 / 14,
     letterSpacing: 0.1,
     color: AppColors.grayColor,
   );
 
-  static const TextStyle regular24RobotoError = TextStyle(
+  static TextStyle get regular24RobotoError => TextStyle(
     fontFamily: 'Roboto',
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.w400,
     height: 1.0,
     letterSpacing: 0.5,
     color: AppColors.errorColor,
   );
 
-  static const TextStyle bodyLarge = TextStyle(
-    fontSize: 14,
+  static TextStyle get bodyLarge => TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.lightGray,
     height: 1.5,
   );
 
   // Underline Styles
-  static const TextStyle regular12BlackUnderline = TextStyle(
+  static TextStyle get regular12BlackUnderline => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
     height: 1.0,
     letterSpacing: 0,
@@ -148,9 +149,9 @@ class AppTextStyles {
     color: AppColors.blackColor,
   );
 
-  static const TextStyle medium16PrimaryUnderline = TextStyle(
+  static TextStyle get medium16PrimaryUnderline => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     height: 1.0,
     letterSpacing: 0,
@@ -159,43 +160,56 @@ class AppTextStyles {
   );
 
   // Label Styles
-  static const TextStyle labelLarge = TextStyle(
-    fontSize: 16,
+  static TextStyle get labelLarge => TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     color: AppColors.offWhite,
   );
-
-  static const TextStyle labelMedium = TextStyle(
+  static TextStyle get labelMedium => const TextStyle(
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     color: AppColors.grayColor,
   );
-
+  static TextStyle get label12Regular => const TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    color: AppColors.grayColor,
+    fontSize: 12,
+  );
+  // hint Styles
+  static TextStyle get hint12Regular => const TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    color: AppColors.lightGray,
+    fontSize: 14,
+  );
   // Status Styles
-  static const TextStyle bodySmallError = TextStyle(
+  static TextStyle get bodySmallError => const TextStyle(
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     color: AppColors.errorColor,
   );
 
-  static const TextStyle bodyLargeSuccess = TextStyle(
-    fontSize: 20,
+  static TextStyle get bodyLargeSuccess => TextStyle(
+    fontSize: 20.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     color: AppColors.successColor,
   );
 
-  static const TextStyle bodyLargeError = TextStyle(
-    fontSize: 20,
+  static TextStyle get bodyLargeError => TextStyle(
+    fontSize: 20.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     color: AppColors.errorColor,
   );
 
-  static const TextStyle semiBold12Primary = TextStyle(
+  static TextStyle get semiBold12Primary => TextStyle(
     fontFamily: 'Inter',
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w600,
     height: 1.0,
     letterSpacing: 0,
