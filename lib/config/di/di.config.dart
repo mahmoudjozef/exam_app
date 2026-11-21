@@ -14,6 +14,9 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/auth/domain/repositories/auth_repo.dart' as _i723;
+import '../../features/auth/domain/usecase/forget_password_usecase.dart'
+    as _i16;
 import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -25,6 +28,9 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.factory<_i361.Dio>(() => dioModule.dio);
+    gh.factory<_i16.ForgetPasswordUseCase>(
+      () => _i16.ForgetPasswordUseCase(gh<_i723.AuthRepo>()),
+    );
     return this;
   }
 }
