@@ -41,6 +41,8 @@ dependencies:
   retrofit: ^4.9.0
   logger: ^2.6.0  
   json_annotation: ^4.9.0
+  flutter_screenutil: ^5.9.3
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
