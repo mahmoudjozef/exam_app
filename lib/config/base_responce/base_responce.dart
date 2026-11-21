@@ -1,47 +1,120 @@
-import "package:dio/dio.dart";
+import 'package:dio/dio.dart';
 
-sealed class BaseResponce<T> {}
+import '../../core/constants/api_constants.dart';
 
-class SuccessBaseResponce<T> extends BaseResponce {
+sealed class BaseResponse<T> {}
+
+class SuccessBaseResponse<T> extends BaseResponse<T> {
   T data;
-  SuccessBaseResponce({required this.data});
+
+  SuccessBaseResponse({required this.data});
 }
 
-class ErrorBaseResponce<T> extends BaseResponce {
-  String errorMsg;
-  ErrorBaseResponce.fromErrorMag(this.errorMsg);
-  // main constructr
-  ErrorBaseResponce({Object? errorObj})
-    : errorMsg = errorObj == null ? '' : _getErrorMsg(errorObj);
-  //logic msg
-  static String _getErrorMsg(Object error) {
-    if (error is DioException) {
-      switch (error.type) {
+class ErrorBaseResponse<T> extends BaseResponse<T> {
+  String errorMessage;
+
+  ErrorBaseResponse.fromErrorMessage(this.errorMessage);
+
+  ErrorBaseResponse({Object? error})
+      : errorMessage = error == null
+      ? ApiConstants.generalErrorMessage
+      : _getErrorMessage(error);
+
+  static String _getErrorMessage(Object errorObject) {
+    if (errorObject is DioException) {
+      switch (errorObject.type) {
         case DioExceptionType.connectionTimeout:
+          return 'Connection timed out. Please check your internet connection and try again.';
+
+        case DioExceptionType.sendTimeout:
+          return 'The request is taking too long to send. Please try again.';
+
         case DioExceptionType.receiveTimeout:
-          return 'No Intarnet';
+          return 'The server is taking too long to respond. Please try again later.';
+
+        case DioExceptionType.badCertificate:
+          return 'A secure connection could not be established. Please try again later.';
+
         case DioExceptionType.badResponse:
-          int statusCode = error.response?.statusCode ?? 404;
-          return _getStatusCodeErrorMsg(statusCode);
-        default:
-          return '';
+          final serverMessage = _getServerMessage(errorObject.response?.data);
+          if(serverMessage != null ) {
+            return serverMessage;
+          }
+          return ApiConstants.generalErrorMessage;
+
+        case DioExceptionType.cancel:
+          return 'The request was cancelled. Please try again.';
+
+        case DioExceptionType.connectionError:
+          return 'No internet connection. Please check your network and try again.';
+
+        case DioExceptionType.unknown:
+          return 'Something went wrong. Please try again later.';
+
+        case DioExceptionType.transformTimeout:
+          return 'The request took too long to process. Please try again.';
       }
     }
-    return '';
+
+    return 'An unexpected error occurred. Please try again later.';
   }
 
-  static String _getStatusCodeErrorMsg(int code) {
-    switch (code) {
+
+  static String _handleBadResponse(DioException error) {
+    final responseData = error.response?.data;
+
+    if (responseData is Map<String, dynamic>) {
+      final message = responseData['message'];
+
+      if (message is String && message.isNotEmpty) {
+        return message;
+      }
+    }
+
+    switch (error.response?.statusCode) {
       case 400:
-        return 'This is 400 code';
-      case 404:
-        return 'This is 404 code';
+        return 'Invalid request. Please check your information.';
+
+      case 401:
+        return 'Your session has expired. Please log in again.';
+
       case 403:
-        return 'UnAuthorized';
+        return 'You do not have permission to perform this action.';
+
+      case 404:
+        return 'The requested resource was not found.';
+
+      case 422:
+        return 'Invalid information. Please review your input.';
+
+      case 429:
+        return 'Too many requests. Please wait a moment and try again.';
+
       case 500:
-        return 'Server Error';
+      case 501:
+      case 502:
+      case 503:
+      case 504:
+        return 'Something went wrong on our server. Please try again later.';
+
       default:
-        return '';
+        return 'Unable to complete your request. Please try again.';
     }
   }
+
+
+  static String? _getServerMessage(dynamic data) {
+    if (data is Map) {
+      final msg = data['message'] ?? data['error'];
+      if (msg is String && msg.isNotEmpty) return msg;
+      if (msg is List && msg.isNotEmpty) return msg.join('\n');
+    }
+    if (data is String && data.isNotEmpty) return data;
+    return null;
+  }
 }
+
+
+
+
+

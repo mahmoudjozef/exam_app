@@ -78,6 +78,8 @@ class AppTheme {
             width: 4,
           ),
         ),
+
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
 
       // Elevated Button Theme
