@@ -1,12 +1,11 @@
-import 'dart:developer';
 
 import 'package:exam_app/config/base_responce/base_responce.dart';
+import 'package:exam_app/config/base_state/base_state.dart';
 import 'package:exam_app/features/auth/data/models/responses/signup_request_model.dart';
 import 'package:exam_app/features/auth/domain/entities/user_entity.dart';
 import 'package:exam_app/features/auth/domain/usecase/signup_usecase.dart';
 import 'package:exam_app/features/auth/presentation/cubit/signup/signup_events.dart';
 import 'package:exam_app/features/auth/presentation/cubit/signup/signup_state.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,7 +17,17 @@ class SignupViewmodel extends Cubit<SignupState> {
   void onEvent(SignupEvents events) {
     switch (events) {
       case GetUser():
-        _signup(events.request);
+        _signup(
+          SignupRequest(
+            username: events.username.trim(),
+            firstName: events.firstName.trim(),
+            lastName: events.lastName.trim(),
+            email: events.email.trim(),
+            password: events.password,
+            rePassword: events.rePassword,
+            phone: events.phone.trim(),
+          ),
+        );
       case GetAllDataEvent():
         _getData(events.request);
     }
@@ -29,15 +38,19 @@ class SignupViewmodel extends Cubit<SignupState> {
   }
 
   Future<void> _signup(SignupRequest request) async {
-    emit(state.copyWith(isLoading: true, errorMsg: null));
-    log('2- VIEWMODEL REQUEST: ${request.toJson()}');
-    final BaseResponce<UserEntity> apiResult = await _signupUsecase(request);
-   log('2- VIEWMODEL RESULT: $apiResult');
+    emit(state.copyWith(userStete: BaseState(isLoading: true)));
+
+    final BaseResponse<UserEntity> apiResult = await _signupUsecase(request);
+
     switch (apiResult) {
-      case SuccessBaseResponce<UserEntity>():
-        emit(state.copyWith(isLoading: false, userStete: apiResult.data));
-      case ErrorBaseResponce<UserEntity>():
-        emit(state.copyWith(errorMsg: apiResult.errorMsg, isLoading: false));
+      case SuccessBaseResponse<UserEntity>():
+        emit(state.copyWith(userStete: BaseState(data: apiResult.data)));
+      case ErrorBaseResponse<UserEntity>():
+        emit(
+          state.copyWith(
+            userStete: BaseState(errorMessage: apiResult.errorMessage),
+          ),
+        );
     }
   }
 }

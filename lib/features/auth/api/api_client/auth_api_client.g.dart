@@ -31,7 +31,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'signup',
+            'auth/signup',
             queryParameters: queryParameters,
             data: _data,
           )

@@ -64,6 +64,7 @@ class AppTheme {
           ),
           borderSide: BorderSide(color: AppColors.errorColor, width: 4),
         ),
+
       ),
 
       // Elevated Button Theme

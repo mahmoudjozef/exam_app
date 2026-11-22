@@ -1,0 +1,3 @@
+class ImagePaths {
+  ImagePaths._();
+}
