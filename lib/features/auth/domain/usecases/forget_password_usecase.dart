@@ -7,7 +7,7 @@ class ForgetPasswordUseCase {
   final AuthRepo authRepo;
 
   ForgetPasswordUseCase(this.authRepo);
-  Future<BaseResponse>call(){
-    return authRepo.forgetPassword();
+  Future<BaseResponse>call(String email){
+    return authRepo.forgetPassword(email: email);
   }
 }
