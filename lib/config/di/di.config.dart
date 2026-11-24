@@ -38,13 +38,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i824.AuthApiClient>(
       () => _i824.AuthApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i1022.AuthRemoteDatasource>(
+    gh.factory<_i1022.AuthRemoteDatasource>(
       () => _i284.AuthRemoteDatasourceImpl(gh<_i824.AuthApiClient>()),
     );
-    gh.lazySingleton<_i723.AuthRepo>(
+    gh.factory<_i723.AuthRepo>(
       () => _i662.AuthRepoImpl(gh<_i1022.AuthRemoteDatasource>()),
     );
-    gh.singleton<_i472.SignupUsecase>(
+    gh.factory<_i472.SignupUsecase>(
       () => _i472.SignupUsecase(gh<_i723.AuthRepo>()),
     );
     gh.factory<_i736.SignupViewmodel>(

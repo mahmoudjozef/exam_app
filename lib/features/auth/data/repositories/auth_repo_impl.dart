@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:exam_app/config/base_responce/base_responce.dart';
 import 'package:exam_app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:exam_app/features/auth/data/models/dto/login_request_model.dart';
 import 'package:exam_app/features/auth/data/models/responses/auth_response_model.dart';
 import 'package:exam_app/features/auth/data/models/responses/signup_request_model.dart';
 import 'package:exam_app/features/auth/domain/entities/user_entity.dart';
@@ -12,12 +11,6 @@ import 'package:injectable/injectable.dart';
 class AuthRepoImpl implements AuthRepo {
   AuthRemoteDatasource authRemoteDatasource;
   AuthRepoImpl(this.authRemoteDatasource);
-
-  @override
-  Future<BaseResponse<UserEntity>> login() {
-    // TODO: implement login
-    throw UnimplementedError();
-  }
 
   @override
   Future<BaseResponse<UserEntity>> signup(SignupRequest request) async {
@@ -33,6 +26,20 @@ class AuthRepoImpl implements AuthRepo {
         return ErrorBaseResponse<UserEntity>.fromErrorMessage(
           result.errorMessage,
         );
+    }
+  }
+
+  @override
+  Future<BaseResponse<UserEntity>> login(LoginRequestModel request) async {
+    final BaseResponse<AuthResponse> result = await authRemoteDatasource.login(
+      request,
+    );
+    switch (result) {
+      case SuccessBaseResponse<AuthResponse>():
+        UserEntity userEntity = result.data.user.toDomain();
+        return SuccessBaseResponse(data: userEntity);
+      case ErrorBaseResponse<AuthResponse>():
+        return ErrorBaseResponse.fromErrorMessage(result.errorMessage);
     }
   }
 }
