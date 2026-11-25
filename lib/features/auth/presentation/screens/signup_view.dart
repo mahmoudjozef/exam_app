@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:exam_app/config/di/di.dart';
 import 'package:exam_app/core/constants/app_validation.dart';
 import 'package:exam_app/core/constants/app_constants.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -64,6 +66,7 @@ class _SignupViewState extends State<SignupView> {
                     '>>>>>>>>>>Signup success: ${s.data}',
                     name: 'SignupView',
                   );
+                  context.go('/login');
                 }
               },
               child: SingleChildScrollView(
@@ -211,7 +214,10 @@ class _SignupViewState extends State<SignupView> {
                           TextSpan(
                             text: AppConstants.login,
                             style: AppTextStyles.medium16PrimaryUnderline,
-                            recognizer: TapGestureRecognizer()..onTap = () {},
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                context.go('/LoginView');
+                              },
                           ),
                         ],
                       ),

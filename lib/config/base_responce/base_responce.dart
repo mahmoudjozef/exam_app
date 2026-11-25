@@ -16,9 +16,9 @@ class ErrorBaseResponse<T> extends BaseResponse<T> {
   ErrorBaseResponse.fromErrorMessage(this.errorMessage);
 
   ErrorBaseResponse({Object? error})
-      : errorMessage = error == null
-      ? ApiConstants.generalErrorMessage
-      : _getErrorMessage(error);
+    : errorMessage = error == null
+          ? ApiConstants.generalErrorMessage
+          : _getErrorMessage(error);
 
   static String _getErrorMessage(Object errorObject) {
     if (errorObject is DioException) {
@@ -37,7 +37,7 @@ class ErrorBaseResponse<T> extends BaseResponse<T> {
 
         case DioExceptionType.badResponse:
           final serverMessage = _getServerMessage(errorObject.response?.data);
-          if(serverMessage != null ) {
+          if (serverMessage != null) {
             return serverMessage;
           }
           return ApiConstants.generalErrorMessage;
@@ -58,7 +58,6 @@ class ErrorBaseResponse<T> extends BaseResponse<T> {
 
     return 'An unexpected error occurred. Please try again later.';
   }
-
 
   static String _handleBadResponse(DioException error) {
     final responseData = error.response?.data;
@@ -102,7 +101,6 @@ class ErrorBaseResponse<T> extends BaseResponse<T> {
     }
   }
 
-
   static String? _getServerMessage(dynamic data) {
     if (data is Map) {
       final msg = data['message'] ?? data['error'];
@@ -113,8 +111,3 @@ class ErrorBaseResponse<T> extends BaseResponse<T> {
     return null;
   }
 }
-
-
-
-
-

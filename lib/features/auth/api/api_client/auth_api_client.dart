@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app/core/constants/app_endpoints.dart';
+import 'package:exam_app/features/auth/data/models/dto/login_request_model.dart';
 import 'package:exam_app/features/auth/data/models/responses/auth_response_model.dart';
 import 'package:exam_app/features/auth/data/models/responses/signup_request_model.dart';
 import 'package:injectable/injectable.dart';
@@ -15,4 +16,7 @@ abstract class AuthApiClient {
 
   @POST(AppEndpoints.signUp)
   Future<AuthResponse> signUp(@Body() SignupRequest request);
+
+  @POST(AppEndpoints.signIn)
+  Future<AuthResponse> login(@Body() LoginRequestModel loginRequest);
 }

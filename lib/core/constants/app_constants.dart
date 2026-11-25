@@ -4,6 +4,9 @@ class AppConstants {
   static const String signUpTitle = 'Sign up';
   static const String signUpButton = 'Signup';
   static const String alreadyHaveAccount = 'Already have an account? ';
+  static const String dontHaveAnAccount = 'Dont have an account?';
+  static const String rememberMe = 'RememberMe';
+
   static const String login = 'Login';
 
   // Labels (اللي فوق الحقل)
@@ -24,9 +27,6 @@ class AppConstants {
   static const String confirmPasswordHint = 'Confirm password';
   static const String phoneHint = 'Enter phone number';
 
- 
-
   // Messages
   static const String signupSuccess = 'Account created successfully';
-
 }
