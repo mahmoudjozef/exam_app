@@ -7,10 +7,15 @@ class LoginOnPressedEvent extends LoginEvents {
   final String password;
   final bool rememberMe;
 
-  LoginOnPressedEvent(this.email, this.password, this.rememberMe);
+  LoginOnPressedEvent({
+    required this.email,
+    required this.password,
+    required this.rememberMe,
+  });
 }
 
 class LoginAllData extends LoginEvents {
   LoginRequestModel loginRequestModel;
-  LoginAllData(this.loginRequestModel);
+  final bool rememberMe;
+  LoginAllData(this.loginRequestModel, this.rememberMe);
 }
