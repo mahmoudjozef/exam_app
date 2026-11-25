@@ -1,8 +1,8 @@
-sealed class ResetCodeEvents {}
+sealed class VerifyResetCodeEvents {}
 
 
-class VerifyResetCode extends ResetCodeEvents{
+class VerifyResetCodeEvent extends VerifyResetCodeEvents{
   final String code;
 
-  VerifyResetCode(this.code);
+  VerifyResetCodeEvent(this.code);
 }

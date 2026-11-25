@@ -1,17 +1,17 @@
 import '../../../../../config/base_state/base_state.dart';
 import '../../../domain/entities/forget_password_entity.dart';
 
-class SendEmailState {
+class ForgetPasswordState {
   final BaseState<ForgetPasswordEntity> sendEmailState;
 
-  SendEmailState({BaseState<ForgetPasswordEntity>? sendEmailState})
+  ForgetPasswordState({BaseState<ForgetPasswordEntity>? sendEmailState})
       : sendEmailState =
       sendEmailState ?? BaseState<ForgetPasswordEntity>();
 
-  SendEmailState copyWith({
+  ForgetPasswordState copyWith({
     BaseState<ForgetPasswordEntity>? sendEmailState,
   }) {
-    return SendEmailState(
+    return ForgetPasswordState(
       sendEmailState: sendEmailState ?? this.sendEmailState,
     );
   }
