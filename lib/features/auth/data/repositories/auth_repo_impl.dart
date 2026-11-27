@@ -11,7 +11,7 @@ import 'package:exam_app/features/auth/domain/entities/verify_reset_code_entity.
 import 'package:exam_app/features/auth/domain/repositories/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@LazySingleton(as: AuthRepo)
+@Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDatasource authRemoteDatasource;
 
@@ -22,16 +22,15 @@ class AuthRepoImpl implements AuthRepo {
     required String email,
   }) async {
     var response = await authRemoteDatasource.forgetPasswordDataSource(
-      "mohamed@gmail.com",
+      email,
     );
 
     switch (response) {
       case SuccessBaseResponse<ForgetPasswordResponseModel>():
-        final ForgetPasswordEntity forgetPasswordEntity = ForgetPasswordEntity(
-          code: response.data.code ?? "",
+        final ForgetPasswordResponseModel forgetPasswordResponseModel = ForgetPasswordResponseModel(
+          message: response.data.message
         );
-        log("Sent email success in datasource");
-        return SuccessBaseResponse(data: forgetPasswordEntity);
+        return SuccessBaseResponse(data: forgetPasswordResponseModel.toEntity());
       case ErrorBaseResponse<ForgetPasswordResponseModel>():
         return ErrorBaseResponse.fromErrorMessage(response.errorMessage);
     }
@@ -60,8 +59,9 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<BaseResponse<ResetPasswordEntity>> resetPassword(
     String newPassword,
+      String email
   ) async {
-    var result = await authRemoteDatasource.resetPassword(newPassword);
+    var result = await authRemoteDatasource.resetPassword(newPassword , email);
 
     switch (result) {
       case SuccessBaseResponse<ResetPasswordResponseModel>():

@@ -1,11 +1,14 @@
+import 'package:equatable/equatable.dart';
+
 import '../../../../../config/base_state/base_state.dart';
 import '../../../domain/entities/forget_password_entity.dart';
 
-class ForgetPasswordState {
+class ForgetPasswordState extends Equatable {
   final BaseState<ForgetPasswordEntity> sendEmailState;
 
-  ForgetPasswordState({BaseState<ForgetPasswordEntity>? sendEmailState})
-      : sendEmailState =
+  ForgetPasswordState({
+    BaseState<ForgetPasswordEntity>? sendEmailState,
+  }) : sendEmailState =
       sendEmailState ?? BaseState<ForgetPasswordEntity>();
 
   ForgetPasswordState copyWith({
@@ -15,4 +18,7 @@ class ForgetPasswordState {
       sendEmailState: sendEmailState ?? this.sendEmailState,
     );
   }
+
+  @override
+  List<Object> get props => [sendEmailState];
 }

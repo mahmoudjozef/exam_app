@@ -3,7 +3,7 @@ import 'package:exam_app/features/auth/domain/entities/forget_password_entity.da
 import 'package:exam_app/features/auth/domain/entities/reset_password_entity.dart';
 import 'package:exam_app/features/auth/domain/entities/verify_reset_code_entity.dart';
 
-abstract class AuthRepo {
+abstract interface class AuthRepo {
   Future<BaseResponse<ForgetPasswordEntity>> forgetPassword({
     required String email,
   });
@@ -13,5 +13,5 @@ abstract class AuthRepo {
   });
 
 
-  Future<BaseResponse<ResetPasswordEntity>>resetPassword(String newPassword);
+  Future<BaseResponse<ResetPasswordEntity>>resetPassword(String newPassword , String email);
 }

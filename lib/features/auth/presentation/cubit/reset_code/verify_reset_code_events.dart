@@ -6,3 +6,10 @@ class VerifyResetCodeEvent extends VerifyResetCodeEvents{
 
   VerifyResetCodeEvent(this.code);
 }
+
+
+class ResendCodeEvent extends VerifyResetCodeEvents{
+  final String email;
+
+  ResendCodeEvent(this.email);
+}

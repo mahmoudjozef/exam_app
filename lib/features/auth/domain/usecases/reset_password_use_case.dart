@@ -6,7 +6,7 @@ import 'package:exam_app/features/auth/domain/repositories/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
 
-@singleton
+@injectable
 class ResetPasswordUseCase {
 
   final AuthRepo authRepo;
@@ -14,7 +14,7 @@ class ResetPasswordUseCase {
   ResetPasswordUseCase(this.authRepo);
 
 
-  Future<BaseResponse<ResetPasswordEntity>>call(String newPassword){
-    return authRepo.resetPassword(newPassword);
+  Future<BaseResponse<ResetPasswordEntity>>call(String newPassword , String email){
+    return authRepo.resetPassword(newPassword , email);
   }
 }

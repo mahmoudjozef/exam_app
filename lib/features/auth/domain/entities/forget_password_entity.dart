@@ -1,5 +1,10 @@
-class ForgetPasswordEntity {
-  final String code;
+import 'package:equatable/equatable.dart';
 
-  const ForgetPasswordEntity({required this.code});
+class ForgetPasswordEntity extends Equatable {
+  final String message;
+
+  const ForgetPasswordEntity({required this.message});
+
+  @override
+  List<Object> get props => [message];
 }

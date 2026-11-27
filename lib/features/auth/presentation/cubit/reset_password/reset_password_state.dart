@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:exam_app/config/base_state/base_state.dart';
 import 'package:exam_app/features/auth/domain/entities/reset_password_entity.dart';
 
-class ResetPasswordState {
+class ResetPasswordState extends Equatable{
   BaseState<ResetPasswordEntity> resetPassword;
 
   ResetPasswordState({BaseState<ResetPasswordEntity>? resetPassword})
@@ -13,4 +14,8 @@ class ResetPasswordState {
       resetPassword : resetPassword ?? this.resetPassword,
     );
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [resetPassword];
 }

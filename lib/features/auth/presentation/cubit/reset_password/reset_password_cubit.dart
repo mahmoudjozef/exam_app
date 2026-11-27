@@ -2,11 +2,7 @@
 
 
 import 'package:exam_app/features/auth/domain/entities/reset_password_entity.dart';
-import 'package:exam_app/features/auth/domain/entities/verify_reset_code_entity.dart';
 import 'package:exam_app/features/auth/domain/usecases/reset_password_use_case.dart';
-import 'package:exam_app/features/auth/domain/usecases/verify_reset_code_use_case.dart';
-import 'package:exam_app/features/auth/presentation/cubit/reset_code/verify_reset_code_events.dart';
-import 'package:exam_app/features/auth/presentation/cubit/reset_code/verify_reset_code_state.dart';
 import 'package:exam_app/features/auth/presentation/cubit/reset_password/reset_password_events.dart';
 import 'package:exam_app/features/auth/presentation/cubit/reset_password/reset_password_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,15 +20,15 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   void addEvent(ResetPasswordEvents event) {
     switch (event) {
 
-      case ResetPasswordEvent(:final newPassword):
-        _resetPassword(newPassword);
+      case ResetPasswordEvent(:final newPassword , :final email):
+        _resetPassword(newPassword , email);
     }
   }
 
-  Future<void> _resetPassword(String newPassword) async {
+  Future<void> _resetPassword(String newPassword , String email) async {
     emit(state.copyWith( resetPassword : BaseState(isLoading: true)));
 
-    final result = await _resetPasswordUseCase.call(newPassword);
+    final result = await _resetPasswordUseCase.call(newPassword , email);
 
     switch (result) {
       case SuccessBaseResponse<ResetPasswordEntity>():

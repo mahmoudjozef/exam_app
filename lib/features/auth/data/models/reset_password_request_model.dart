@@ -7,9 +7,10 @@ part 'reset_password_request_model.g.dart';
 class ResetPasswordRequestModel {
   @JsonKey(name: 'newPassword')
   final String newPassword;
+  final String email;
 
   ResetPasswordRequestModel({
-    required this.newPassword,
+    required this.newPassword, required this.email,
   });
 
   factory ResetPasswordRequestModel.fromJson(Map<String, dynamic> json) =>

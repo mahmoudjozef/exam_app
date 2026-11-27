@@ -5,7 +5,7 @@ import 'package:exam_app/features/auth/domain/entities/forget_password_entity.da
 import 'package:exam_app/features/auth/domain/repositories/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@injectable
 class ForgetPasswordUseCase {
   final AuthRepo authRepo;
 

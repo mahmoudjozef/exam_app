@@ -5,7 +5,7 @@ import 'package:exam_app/features/auth/domain/entities/verify_reset_code_entity.
 import 'package:exam_app/features/auth/domain/repositories/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
+@injectable
 class VerifyResetCodeUseCase {
   final AuthRepo authRepo;
 

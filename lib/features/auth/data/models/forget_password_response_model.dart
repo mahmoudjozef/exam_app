@@ -6,12 +6,12 @@ part 'forget_password_response_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class ForgetPasswordResponseModel {
-  final String? code;
+  final String? message;
 
-  ForgetPasswordResponseModel({this.code});
+  ForgetPasswordResponseModel({this.message});
 
   factory ForgetPasswordResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ForgetPasswordResponseModelFromJson(json);
 
-  ForgetPasswordEntity toEntity() => ForgetPasswordEntity(code: code ?? '');
+  ForgetPasswordEntity toEntity() => ForgetPasswordEntity(message: message ?? "");
 }
