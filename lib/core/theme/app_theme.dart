@@ -53,7 +53,7 @@ class AppTheme {
           ),
           borderSide: BorderSide(
             color: AppColors.primaryColor,
-            width: 4,
+            width: 3,
           ),
         ),
 
@@ -75,7 +75,7 @@ class AppTheme {
           ),
           borderSide: BorderSide(
             color: AppColors.errorColor,
-            width: 4,
+            width: 2,
           ),
         ),
 
